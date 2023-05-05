@@ -17,6 +17,9 @@
 - Enable MFA for all users
 - Use groups to assign permissions
 - Enable AWS IAM password policies
+- Access keys for IAM users should be rotated every 90 days or less
+- IAM password policy requires minimum password length of 14 or greater
+- IAM users should not have IAM policies attached
 
 ## 3. Amazon EC2
 
@@ -26,6 +29,8 @@
 - Enable AWS CloudTrail
 - Enable AWS GuardDuty
 - Regularly monitor and patch instances
+- Security groups should not allow ingress from any(all) ip address to port 22
+- Ensure no security groups allow ingress from any(all) ip address to port 3389
 
 ## 4. Amazon RDS
 
@@ -48,10 +53,25 @@
 - Enable log file validation
 - Encrypt log files at rest
 - Integrate with AWS CloudWatch
+- Enable S3 bucket access logging on the CloudTrail S3 bucket
 
 ## 7. Amazon CloudWatch
 
-- Enable CloudWatch Logs and Metrics
+- Enable CloudWatch Logs and Metrics/Log metric filters and alarms for: 
+  - usage of root user
+  - changes to Security Group
+  - changes to NACL
+  - changes to Network Gateways
+  - changes to Route Tables
+  - changes to VPC
+  - unauthorized API calls
+  - management console sign-in without MFA
+  - changes to IAM policy
+  - changes to CloudTrail configuration
+  - management console authentication failures
+  - disabling/scheduled deletion of customer created master keys
+  - changes to S3 bucket policies
+  - changes to AWS Config configurations
 - Set up CloudWatch Alarms for critical events
 - Monitor AWS trusted Advisor findings
 
